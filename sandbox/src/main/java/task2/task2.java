@@ -9,5 +9,5 @@ public class task2 {
     System.out.println("расстояние между двумя точками = " + p2.distance(p1));
 
   }
-  
+
 }
