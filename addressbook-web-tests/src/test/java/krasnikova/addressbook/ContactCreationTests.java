@@ -19,17 +19,31 @@ public class ContactCreationTests {
     driver = new FirefoxDriver();
     baseUrl = "https://www.katalon.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.get("http://localhost/addressbook/");
+    login();
   }
 
-  @Test
-  public void testContactCreation() throws Exception {
-    driver.get("http://localhost/addressbook/");
+  private void login() {
     driver.findElement(By.name("user")).clear();
     driver.findElement(By.name("user")).sendKeys("admin");
     driver.findElement(By.name("pass")).clear();
     driver.findElement(By.name("pass")).sendKeys("secret");
     driver.findElement(By.xpath("//input[@value='Login']")).click();
-    driver.findElement(By.linkText("add new")).click();
+  }
+
+  @Test
+  public void testContactCreation() throws Exception {
+
+    initContactCreation();
+    fillNewContactForm();
+    submitContactCreation();
+  }
+
+  private void submitContactCreation() {
+    driver.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+  }
+
+  private void fillNewContactForm() {
     driver.findElement(By.name("firstname")).click();
     driver.findElement(By.name("firstname")).clear();
     driver.findElement(By.name("firstname")).sendKeys("FirstName");
@@ -48,7 +62,10 @@ public class ContactCreationTests {
     driver.findElement(By.name("email")).clear();
     driver.findElement(By.name("email")).sendKeys("test@test.com");
     driver.findElement(By.name("theform")).click();
-    driver.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+  }
+
+  private void initContactCreation() {
+    driver.findElement(By.linkText("add new")).click();
   }
 
   @AfterClass(alwaysRun = true)
