@@ -33,7 +33,7 @@ public class ContactCreationTests {
   public void testContactCreation() throws Exception {
 
     initContactCreation();
-    fillNewContactForm("FirstName", "LastName", "my test address", "123456789", "test@test.com");
+    fillNewContactForm(new ContactData("FirstName", "LastName", "my test address", "123456789", "test@test.com"));
     submitContactCreation();
   }
 
@@ -41,24 +41,24 @@ public class ContactCreationTests {
     driver.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
-  private void fillNewContactForm(String firstName, String lastName, String address, String phone, String email) {
+  private void fillNewContactForm(ContactData contactData) {
     driver.findElement(By.name("firstname")).click();
     driver.findElement(By.name("firstname")).clear();
-    driver.findElement(By.name("firstname")).sendKeys(firstName);
+    driver.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
     driver.findElement(By.name("lastname")).click();
     driver.findElement(By.name("lastname")).clear();
-    driver.findElement(By.name("lastname")).sendKeys(lastName);
+    driver.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
     driver.findElement(By.name("address")).click();
     driver.findElement(By.name("address")).clear();
-    driver.findElement(By.name("address")).sendKeys(address);
+    driver.findElement(By.name("address")).sendKeys(contactData.getAddress());
     driver.findElement(By.name("theform")).click();
     driver.findElement(By.name("theform")).click();
     driver.findElement(By.name("home")).click();
     driver.findElement(By.name("home")).clear();
-    driver.findElement(By.name("home")).sendKeys(phone);
+    driver.findElement(By.name("home")).sendKeys(contactData.getPhone());
     driver.findElement(By.name("email")).click();
     driver.findElement(By.name("email")).clear();
-    driver.findElement(By.name("email")).sendKeys(email);
+    driver.findElement(By.name("email")).sendKeys(contactData.getEmail());
     driver.findElement(By.name("theform")).click();
   }
 
