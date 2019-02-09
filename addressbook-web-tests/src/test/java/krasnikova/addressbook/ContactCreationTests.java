@@ -1,12 +1,10 @@
 package krasnikova.addressbook;
 
-import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
 import static org.testng.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class ContactCreationTests {
   private WebDriver driver;
@@ -20,14 +18,14 @@ public class ContactCreationTests {
     baseUrl = "https://www.katalon.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     driver.get("http://localhost/addressbook/");
-    login();
+    login("admin", "secret");
   }
 
-  private void login() {
+  private void login(String username, String password) {
     driver.findElement(By.name("user")).clear();
-    driver.findElement(By.name("user")).sendKeys("admin");
+    driver.findElement(By.name("user")).sendKeys(username);
     driver.findElement(By.name("pass")).clear();
-    driver.findElement(By.name("pass")).sendKeys("secret");
+    driver.findElement(By.name("pass")).sendKeys(password);
     driver.findElement(By.xpath("//input[@value='Login']")).click();
   }
 
@@ -35,7 +33,7 @@ public class ContactCreationTests {
   public void testContactCreation() throws Exception {
 
     initContactCreation();
-    fillNewContactForm();
+    fillNewContactForm("FirstName", "LastName", "my test address", "123456789", "test@test.com");
     submitContactCreation();
   }
 
@@ -43,24 +41,24 @@ public class ContactCreationTests {
     driver.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
-  private void fillNewContactForm() {
+  private void fillNewContactForm(String firstName, String lastName, String address, String phone, String email) {
     driver.findElement(By.name("firstname")).click();
     driver.findElement(By.name("firstname")).clear();
-    driver.findElement(By.name("firstname")).sendKeys("FirstName");
+    driver.findElement(By.name("firstname")).sendKeys(firstName);
     driver.findElement(By.name("lastname")).click();
     driver.findElement(By.name("lastname")).clear();
-    driver.findElement(By.name("lastname")).sendKeys("LastName");
+    driver.findElement(By.name("lastname")).sendKeys(lastName);
     driver.findElement(By.name("address")).click();
     driver.findElement(By.name("address")).clear();
-    driver.findElement(By.name("address")).sendKeys("my test address");
+    driver.findElement(By.name("address")).sendKeys(address);
     driver.findElement(By.name("theform")).click();
     driver.findElement(By.name("theform")).click();
     driver.findElement(By.name("home")).click();
     driver.findElement(By.name("home")).clear();
-    driver.findElement(By.name("home")).sendKeys("123456789");
+    driver.findElement(By.name("home")).sendKeys(phone);
     driver.findElement(By.name("email")).click();
     driver.findElement(By.name("email")).clear();
-    driver.findElement(By.name("email")).sendKeys("test@test.com");
+    driver.findElement(By.name("email")).sendKeys(email);
     driver.findElement(By.name("theform")).click();
   }
 
