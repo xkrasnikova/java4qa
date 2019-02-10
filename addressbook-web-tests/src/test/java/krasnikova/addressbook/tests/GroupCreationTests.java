@@ -5,7 +5,6 @@ import org.testng.annotations.*;
 
 public class GroupCreationTests extends TestBase {
 
-
   @Test
   public void testGroupCreation() throws Exception {
     app.getNavigationHelper().gotoGroupPage();
@@ -14,6 +13,5 @@ public class GroupCreationTests extends TestBase {
     app.getGroupHelper().submitGroupCreation();
     app.getGroupHelper().returnToGroupPage();
   }
-
 
 }
