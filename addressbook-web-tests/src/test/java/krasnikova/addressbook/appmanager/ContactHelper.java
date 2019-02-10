@@ -34,4 +34,8 @@ public class ContactHelper extends HelperBase {
   public void selectContact() {
     click(By.name("selected[]"));
   }
+
+  public void closeDeletionContactAlert() {
+    wd.switchTo().alert().accept();
+  }
 }
