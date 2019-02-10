@@ -1,4 +1,4 @@
-package krasnikova.addressbook;
+package krasnikova.addressbook.model;
 
 public class GroupData {
   private final String name;

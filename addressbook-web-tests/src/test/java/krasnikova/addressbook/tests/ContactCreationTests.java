@@ -1,6 +1,8 @@
-package krasnikova.addressbook;
+package krasnikova.addressbook.tests;
 
 import java.util.concurrent.TimeUnit;
+
+import krasnikova.addressbook.model.ContactData;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;

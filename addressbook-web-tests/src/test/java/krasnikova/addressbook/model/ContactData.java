@@ -1,4 +1,4 @@
-package krasnikova.addressbook;
+package krasnikova.addressbook.model;
 
 public class ContactData {
   private final String firstName;
