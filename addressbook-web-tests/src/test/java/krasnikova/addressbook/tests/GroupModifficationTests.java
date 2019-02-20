@@ -4,7 +4,6 @@ import krasnikova.addressbook.model.GroupData;
 import org.testng.annotations.Test;
 
 public class GroupModifficationTests extends TestBase {
-
   @Test
   public void testGroupModification(){
     app.getNavigationHelper().gotoGroupPage();
