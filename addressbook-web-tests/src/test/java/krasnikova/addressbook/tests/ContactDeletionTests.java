@@ -5,6 +5,7 @@ import krasnikova.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ContactDeletionTests extends TestBase{
@@ -15,13 +16,13 @@ public class ContactDeletionTests extends TestBase{
     if (!app.getContactHelper().isThereContact()){
       app.getContactHelper().createContact(new ContactData("TEST", "USER", null, null, null, "new1"),true);
     }
-    int before = app.getContactHelper().getContactCount();
-    app.getContactHelper().selectContact(before - 1);
+    List<ContactData> before = app.getContactHelper().getContactList();
+    app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().deleteSelectedContacts();
     app.getContactHelper().closeDeletionContactAlert();
     TimeUnit.SECONDS.sleep(4);
-    int after = app.getContactHelper().getContactCount();
-    Assert.assertEquals(after, before - 1);
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(), before.size() - 1);
   }
 
 }
