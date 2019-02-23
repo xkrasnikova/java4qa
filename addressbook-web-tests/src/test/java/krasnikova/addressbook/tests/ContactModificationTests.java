@@ -13,7 +13,7 @@ public class ContactModificationTests extends TestBase {
       app.getContactHelper().createContact(new ContactData("TEST", "USER", null, null, null, "new1"),true);
     }
     int before = app.getContactHelper().getContactCount();
-    app.getContactHelper().selectContact();
+    app.getContactHelper().selectContact(before - 1);
     app.getContactHelper().initContactModification();
     app.getContactHelper().fillContactForm(new ContactData("Edited", "Edited", " Edited address", "89876678", "edited@test.com", null), false);
     app.getContactHelper().submitContactModification();
