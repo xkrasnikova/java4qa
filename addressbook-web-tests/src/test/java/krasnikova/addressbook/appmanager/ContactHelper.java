@@ -83,14 +83,14 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts = new ArrayList<>();
     List <WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){
-      String id = element.findElement(By.tagName("input")).getAttribute("value");
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String contactString = element.getText();
       Queue <String> conStack = new LinkedList<String> ();
       for (String con : contactString.split(" ")) {
         conStack.add(con);
       }
-        String firstName = conStack.poll();
         String lastName = conStack.poll();
+        String firstName = conStack.poll();
         String address = conStack.poll();
         String email = conStack.poll();
         String phone = conStack.poll();
