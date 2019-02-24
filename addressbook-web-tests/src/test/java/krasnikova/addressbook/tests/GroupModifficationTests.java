@@ -4,6 +4,7 @@ import krasnikova.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class GroupModifficationTests extends TestBase {
@@ -16,10 +17,15 @@ public class GroupModifficationTests extends TestBase {
     List<GroupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().selectGroup(before.size() - 1);
     app.getGroupHelper().initGroupModification();
-    app.getGroupHelper().fillGoupForm(new GroupData("new1 edited", "Group header 1 edited", "Group footer 2 edited"));
+    GroupData group = new GroupData(before.get(before.size() - 1).getId(),"new1 edited", "Group header 1 edited", "Group footer 2 edited");
+    app.getGroupHelper().fillGoupForm(group);
     app.getGroupHelper().submitGroupModification();
     app.getGroupHelper().returnToGroupPage();
     List<GroupData> after = app.getGroupHelper().getGroupList();
     Assert.assertEquals(after.size(), before.size());
+
+    before.remove(before.size() - 1);
+    before.add(group);
+    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
   }
 }

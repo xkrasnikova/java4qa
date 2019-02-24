@@ -8,8 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 
 public class ContactHelper extends HelperBase {
 
@@ -51,12 +51,12 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void initContactModification() {
-    click(By.xpath("//img[@alt='Edit']"));
+  public void initContactModification(int index) {
+    wd.findElements(By.name("entry")).get(index).findElement(By.cssSelector("img[title='Edit']")).click();
   }
 
   public void submitContactModification() {
-    click(By.xpath("(//input[@name='update'])[2]"));
+    click(By.name("update"));
   }
 
   public void returnToHomePage() {
@@ -81,17 +81,23 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<>();
-    List <WebElement> elements = wd.findElements(By.name("selected[]"));
+    List <WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){
-      String firstName = element.getText();
-      String lastName = element.getText();
-      String address = element.getText();
-      String phone = element.getText();
-      String email = element.getText();
-      String group = element.getText();
-      ContactData contact = new ContactData(firstName, lastName,  address, phone, email, group);
-      contacts.add(contact);
-    }
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
+      String contactString = element.getText();
+      Queue <String> conStack = new LinkedList<String> ();
+      for (String con : contactString.split(" ")) {
+        conStack.add(con);
+      }
+        String firstName = conStack.poll();
+        String lastName = conStack.poll();
+        String address = conStack.poll();
+        String email = conStack.poll();
+        String phone = conStack.poll();
+        ContactData contact = new ContactData(id, firstName, lastName, address, phone, email, null);
+        contacts.add(contact);
+      }
+
     return contacts;
   }
 }
