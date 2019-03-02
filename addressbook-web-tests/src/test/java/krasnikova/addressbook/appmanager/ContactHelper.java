@@ -84,18 +84,13 @@ public class ContactHelper extends HelperBase {
     List <WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      String contactString = element.getText();
-      Queue <String> conStack = new LinkedList<String> ();
-      for (String con : contactString.split(" ")) {
-        conStack.add(con);
-      }
-        String lastName = conStack.poll();
-        String firstName = conStack.poll();
-        String address = conStack.poll();
-        String email = conStack.poll();
-        String phone = conStack.poll();
-        ContactData contact = new ContactData(id, firstName, lastName, address, phone, email, null);
-        contacts.add(contact);
+      String lastName = element.findElement(By.xpath(".//td[2]")).getText();
+      String firstName = element.findElement(By.xpath(".//td[3]")).getText();
+      String address = element.findElement(By.xpath(".//td[4]")).getText();
+      String email = element.findElement(By.xpath(".//td[5]")).getText();
+      String phone = element.findElement(By.xpath(".//td[6]")).getText();
+      ContactData contact = new ContactData(id, firstName, lastName, address, phone, email, null);
+      contacts.add(contact);
       }
 
     return contacts;
