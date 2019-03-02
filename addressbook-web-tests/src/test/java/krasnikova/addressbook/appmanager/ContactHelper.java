@@ -1,14 +1,12 @@
 package krasnikova.addressbook.appmanager;
 
 import krasnikova.addressbook.model.ContactData;
-import krasnikova.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class ContactHelper extends HelperBase {
@@ -43,7 +41,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void selectContact(int index) {
+  public void select(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
@@ -67,7 +65,7 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public void createContact(ContactData contact, boolean isThereGroupField) {
+  public void create(ContactData contact, boolean isThereGroupField) {
     initContactCreation();
     fillContactForm(contact,isThereGroupField);
     submitContactCreation();
@@ -79,7 +77,7 @@ public class ContactHelper extends HelperBase {
   }
 
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<>();
     List <WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){
@@ -96,11 +94,16 @@ public class ContactHelper extends HelperBase {
     return contacts;
   }
 
-  public void modifyContact(int index, ContactData contact) {
-    selectContact(index);
+  public void modify(int index, ContactData contact) {
+    select(index);
     initContactModification(index);
     fillContactForm(contact, false);
     submitContactModification();
     returnToHomePage();
   }
+
+  public void delete(int index) {
+    select(index);
+    deleteSelectedContacts();
+    closeDeletionContactAlert();
 }

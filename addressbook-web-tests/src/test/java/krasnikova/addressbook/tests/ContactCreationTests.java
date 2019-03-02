@@ -1,23 +1,21 @@
 package krasnikova.addressbook.tests;
 
 import krasnikova.addressbook.model.ContactData;
-import krasnikova.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-    app.getNavigationHelper().gotoHomePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
+    app.goTo().homePage();
+    List<ContactData> before = app.contact().list();
     ContactData contact = new ContactData("12", "7", null, null, null, "new1");
-    app.getContactHelper().createContact(contact,true);
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().create(contact,true);
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
 
