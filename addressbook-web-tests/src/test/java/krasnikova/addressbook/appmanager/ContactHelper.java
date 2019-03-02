@@ -106,4 +106,5 @@ public class ContactHelper extends HelperBase {
     select(index);
     deleteSelectedContacts();
     closeDeletionContactAlert();
+  }
 }
