@@ -95,8 +95,16 @@ public class ContactData {
     return address;
   }
 
-  public String getPhone() {
-    return phone;
+  public String getHomePhone() {
+    return home;
+  }
+
+  public String getWorkPhone() {
+    return work;
+  }
+
+  public String getMobilePhone() {
+    return mobile;
   }
 
   public String getEmail() {

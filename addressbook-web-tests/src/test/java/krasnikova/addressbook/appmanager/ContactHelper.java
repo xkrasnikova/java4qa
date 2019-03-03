@@ -27,7 +27,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("firstname"),contactData.getFirstName());
     type(By.name("lastname"),contactData.getLastName());
     type(By.name("address"),contactData.getAddress());
-    type(By.name("home"),contactData.getPhone());
+    type(By.name("home"),contactData.getHomePhone());
+    type(By.name("mobile"),contactData.getMobilePhone());
+    type(By.name("work"),contactData.getWorkPhone());
     type(By.name("email"),contactData.getEmail());
 
     if (creation){
@@ -89,15 +91,23 @@ public class ContactHelper extends HelperBase {
       return new Contacts(contactCache);
     }
     contactCache = new Contacts();
-    List <WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element : elements){
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      String lastName = element.findElement(By.xpath(".//td[2]")).getText();
-      String firstName = element.findElement(By.xpath(".//td[3]")).getText();
-      String address = element.findElement(By.xpath(".//td[4]")).getText();
-      String email = element.findElement(By.xpath(".//td[5]")).getText();
-      String phone = element.findElement(By.xpath(".//td[6]")).getText();
-      ContactData contact = new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address).withPhone(phone).withEmail(email);
+    List <WebElement> rows = wd.findElements(By.name("entry"));
+    for (WebElement row : rows){
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String lastName = cells.get(1).getText();
+      String firstName = cells.get(2).getText();
+      String address = cells.get(3).getText();
+      String email = cells.get(4).getText();
+      String[] phones = cells.get(5).getText().split("\n");
+      ContactData contact = new ContactData().withId(id)
+              .withFirstName(firstName)
+              .withLastName(lastName)
+              .withAddress(address)
+              .withHomePhone(phones[0])
+              .withMobilePhone(phones[1])
+              .withWorkPhone(phones[2])
+              .withEmail(email);
       contactCache.add(contact);
     }
 
