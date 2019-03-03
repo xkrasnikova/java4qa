@@ -99,14 +99,12 @@ public class ContactHelper extends HelperBase {
       String firstName = cells.get(2).getText();
       String address = cells.get(3).getText();
       String email = cells.get(4).getText();
-      String[] phones = cells.get(5).getText().split("\n");
+      String allPhones = cells.get(5).getText();
       ContactData contact = new ContactData().withId(id)
               .withFirstName(firstName)
               .withLastName(lastName)
               .withAddress(address)
-              .withHomePhone(phones[0])
-              .withMobilePhone(phones[1])
-              .withWorkPhone(phones[2])
+              .withAllPhones(allPhones)
               .withEmail(email);
       contactCache.add(contact);
     }
