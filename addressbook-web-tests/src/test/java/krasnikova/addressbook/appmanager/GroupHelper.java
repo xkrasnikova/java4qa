@@ -1,6 +1,7 @@
 package krasnikova.addressbook.appmanager;
 
 import krasnikova.addressbook.model.GroupData;
+import krasnikova.addressbook.model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,8 +12,8 @@ import java.util.Set;
 
 public class GroupHelper extends HelperBase {
 
-  public Set<GroupData> all() {
-    Set<GroupData> groups = new HashSet<GroupData>();
+  public Groups all() {
+    Groups groups = new Groups();
     List <WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements){
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));

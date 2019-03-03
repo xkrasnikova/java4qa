@@ -1,10 +1,17 @@
 package krasnikova.addressbook.tests;
 
 import krasnikova.addressbook.model.GroupData;
+import krasnikova.addressbook.model.Groups;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class GroupModifficationTests extends TestBase {
   @BeforeMethod
@@ -18,7 +25,7 @@ public class GroupModifficationTests extends TestBase {
   @Test
   public void testGroupModification(){
 
-    Set<GroupData> before = app.group().all();
+    Groups before = app.group().all();
     GroupData modifiedGroup = before.iterator().next();
 
     GroupData group = new GroupData().
@@ -28,12 +35,10 @@ public class GroupModifficationTests extends TestBase {
             withFooter("Group footer edited");
     app.group().modify(group);
 
-    Set<GroupData> after = app.group().all();
-    Assert.assertEquals(after.size(), before.size());
+    Groups after = app.group().all();
 
-    before.remove(modifiedGroup);
-    before.add(group);
-    Assert.assertEquals(before, after);
+    assertEquals(after.size(), before.size());
+    assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
   }
 
 }
