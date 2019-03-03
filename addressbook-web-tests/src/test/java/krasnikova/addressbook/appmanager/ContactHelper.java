@@ -45,12 +45,16 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='"+ id +"']")).click();
+  }
+
   public void closeDeletionContactAlert() {
     wd.switchTo().alert().accept();
   }
 
-  public void initContactModification(int index) {
-    wd.findElements(By.name("entry")).get(index).findElement(By.cssSelector("img[title='Edit']")).click();
+  public void initContactModificationById(int id) {
+    wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
   }
 
   public void submitContactModification() {
@@ -76,9 +80,8 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List <WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
@@ -89,21 +92,21 @@ public class ContactHelper extends HelperBase {
       String phone = element.findElement(By.xpath(".//td[6]")).getText();
       ContactData contact = new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address).withPhone(phone).withEmail(email);
       contacts.add(contact);
-      }
+    }
 
     return contacts;
   }
 
-  public void modify(int index, ContactData contact) {
-    select(index);
-    initContactModification(index);
+  public void modify(ContactData contact) {
+    initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
     returnToHomePage();
   }
 
-  public void delete(int index) {
-    select(index);
+
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteSelectedContacts();
     closeDeletionContactAlert();
   }
