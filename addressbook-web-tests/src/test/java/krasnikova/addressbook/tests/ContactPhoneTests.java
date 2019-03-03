@@ -1,6 +1,7 @@
 package krasnikova.addressbook.tests;
 
 import krasnikova.addressbook.model.ContactData;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -10,6 +11,13 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactPhoneTests extends TestBase{
+  @BeforeMethod
+  public void ensurePreconditions(){
+    app.goTo().homePage();
+    if (app.contact().all().size() == 0){
+      app.contact().create(new ContactData().withFirstName("TEST").withLastName("USER").withGroup("new1").withHomePhone("22 33 44").withWorkPhone("+3(024) 55 44 222"),true);
+    }
+  }
 
   @Test
   public void testContactPhones(){
