@@ -1,5 +1,6 @@
 package krasnikova.addressbook.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ContactData {
@@ -17,9 +18,11 @@ public class ContactData {
   private String email2;
   private String email3;
   private String group;
+  private File photo;
 
-  public String getAllEmails() {
-    return allEmails;
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
   }
 
   public ContactData withAllEmails(String allEmails) {
@@ -111,6 +114,14 @@ public class ContactData {
   @Override
   public int hashCode() {
     return Objects.hash(id, firstName, lastName);
+  }
+
+  public File getPhoto() {
+    return photo;
+  }
+
+  public String getAllEmails() {
+    return allEmails;
   }
 
   public int getId() {
