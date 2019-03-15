@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="krasnikova.addressbook.tests.ContactCreationTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2019-03-15T16:39:20" hostname="Kseniyas-mac.local" time="21.861">
+  <properties/>
+  <testcase name="testContactCreation[0](ContactData{firstName='FirstName 0', lastName='LastName 0', address='Address 0', phone='null', email='email1+0@mail.com', group='test 0'})" classname="krasnikova.addressbook.tests.ContactCreationTests" time="9.568"/>
+  <testcase name="testContactCreation[1](ContactData{firstName='FirstName 1', lastName='LastName 1', address='Address 1', phone='null', email='email1+1@mail.com', group='test 1'})" classname="krasnikova.addressbook.tests.ContactCreationTests" time="6.053"/>
+  <testcase name="testContactCreation[2](ContactData{firstName='FirstName 2', lastName='LastName 2', address='Address 2', phone='null', email='email1+2@mail.com', group='test 2'})" classname="krasnikova.addressbook.tests.ContactCreationTests" time="6.239"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
