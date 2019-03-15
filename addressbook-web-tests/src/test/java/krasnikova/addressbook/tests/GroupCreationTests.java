@@ -5,11 +5,11 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import krasnikova.addressbook.model.GroupData;
 import krasnikova.addressbook.model.Groups;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
-
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +18,8 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
+
+
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromXML() throws IOException {
@@ -53,6 +55,7 @@ public class GroupCreationTests extends TestBase {
 
   @Test(dataProvider = "validGroupsFromJSON")
   public void testGroupCreation(GroupData group ) throws Exception {
+
       app.goTo().groupPage();
       Groups before = app.group().all();
       app.group().create(group);
