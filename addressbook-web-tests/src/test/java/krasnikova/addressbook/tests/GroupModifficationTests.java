@@ -2,12 +2,8 @@ package krasnikova.addressbook.tests;
 
 import krasnikova.addressbook.model.GroupData;
 import krasnikova.addressbook.model.Groups;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
