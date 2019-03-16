@@ -16,8 +16,8 @@ import static org.testng.Assert.assertEquals;
 public class GroupModifficationTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions(){
-    app.goTo().groupPage();
-    if (app.group().all().size() == 0){
+    if (app.db().groups().size() == 0){
+      app.goTo().groupPage();
       app.group().create(new GroupData().withName("new1"));
     }
   }
@@ -25,7 +25,7 @@ public class GroupModifficationTests extends TestBase {
   @Test
   public void testGroupModification(){
 
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     GroupData modifiedGroup = before.iterator().next();
 
     GroupData group = new GroupData().
@@ -33,9 +33,10 @@ public class GroupModifficationTests extends TestBase {
             withName("new1 edited").
             withHeader("Group header edited").
             withFooter("Group footer edited");
+    app.goTo().groupPage();
     app.group().modify(group);
     assertEquals(app.group().count(), before.size());
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
   }
 
