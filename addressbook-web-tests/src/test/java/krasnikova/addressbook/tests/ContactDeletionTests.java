@@ -2,6 +2,7 @@ package krasnikova.addressbook.tests;
 
 import krasnikova.addressbook.model.ContactData;
 import krasnikova.addressbook.model.Contacts;
+import krasnikova.addressbook.model.GroupData;
 import krasnikova.addressbook.model.Groups;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -16,6 +17,10 @@ public class ContactDeletionTests extends TestBase{
   @BeforeMethod
   public void ensurePreconditions(){
     Groups groups = app.db().groups();
+    if (app.db().groups().size() == 0){
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("new1"));
+    }
     if (app.db().contacts().size() == 0){
       app.goTo().homePage();
       app.contact().create(new ContactData().withFirstName("TEST").withLastName("USER").inGroup(groups.iterator().next()).withAddress("laalalalla\nlalalala"),true);

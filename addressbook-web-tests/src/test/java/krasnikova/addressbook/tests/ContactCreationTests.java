@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import krasnikova.addressbook.model.ContactData;
 import krasnikova.addressbook.model.Contacts;
+import krasnikova.addressbook.model.GroupData;
 import krasnikova.addressbook.model.Groups;
 import org.testng.annotations.*;
 
@@ -19,6 +20,13 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
+  @BeforeMethod
+  public void ensurePreconditions(){
+    if (app.db().groups().size() == 0){
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("new1"));
+    }
+  }
 
   @DataProvider
   public Iterator<Object[]> validContactsFromJSON() throws IOException {
