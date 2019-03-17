@@ -27,8 +27,12 @@ public class ContactModificationTests extends TestBase {
             .withLastName("11Edited")
             .withFirstName("11Edited")
             .withAddress("111Edited_address")
-            .withPhone("811111118")
-            .withEmail("111edited@test.com");
+            .withMobilePhone("811111118")
+            .withHomePhone("11111")
+            .withWorkPhone("2222222")
+            .withEmail("111edited@test.com")
+            .withEmail2("222@test.com")
+            .withEmail3("333@test.com");
     app.goTo().homePage();
     app.contact().modify(contact);
     assertEquals(app.contact().count(), before.size());

@@ -27,12 +27,9 @@ public class ContactData {
   private String lastName;
 
   @Expose
-  @Transient
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
-
-  @Expose
-  @Transient
-  private String phone;
 
   @Expose
   @Transient
@@ -58,15 +55,18 @@ public class ContactData {
   private String workPhone;
 
   @Expose
-  @Transient
+  @Column(name = "email")
+  @Type(type = "text")
   private String email;
 
   @Expose
-  @Transient
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
 
   @Expose
-  @Transient
+  @Column(name = "email3")
+  @Type(type = "text")
   private String email3;
 
   @Expose
@@ -119,10 +119,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withPhone(String phone) {
-    this.phone = phone;
-    return this;
-  }
 
   public ContactData withHomePhone(String home) {
     this.homePhone = home;
@@ -157,29 +153,6 @@ public class ContactData {
   public ContactData withGroup(String group) {
     this.group = group;
     return this;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(firstName, that.firstName) &&
-            Objects.equals(lastName, that.lastName) &&
-            Objects.equals(address, that.address) &&
-            Objects.equals(homePhone, that.homePhone) &&
-            Objects.equals(mobilePhone, that.mobilePhone) &&
-            Objects.equals(workPhone, that.workPhone) &&
-            Objects.equals(email, that.email) &&
-            Objects.equals(email2, that.email2) &&
-            Objects.equals(email3, that.email3) &&
-            Objects.equals(group, that.group);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, firstName, lastName, address, homePhone, mobilePhone, workPhone, email, email2, email3, group);
   }
 
   public File getPhoto() {
@@ -239,15 +212,46 @@ public class ContactData {
   }
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id &&
+            Objects.equals(firstName, that.firstName) &&
+            Objects.equals(lastName, that.lastName) &&
+            Objects.equals(address, that.address) &&
+            Objects.equals(homePhone, that.homePhone) &&
+            Objects.equals(mobilePhone, that.mobilePhone) &&
+            Objects.equals(workPhone, that.workPhone) &&
+            Objects.equals(email, that.email) &&
+            Objects.equals(email2, that.email2) &&
+            Objects.equals(email3, that.email3);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, firstName, lastName, address, homePhone, mobilePhone, workPhone, email, email2, email3);
+  }
+
+  @Override
   public String toString() {
     return "ContactData{" +
-            "firstName='" + firstName + '\'' +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", address='" + address + '\'' +
-            ", phone='" + phone + '\'' +
+            ", allPhones='" + allPhones + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", allEmails='" + allEmails + '\'' +
+            ", workPhone='" + workPhone + '\'' +
             ", email='" + email + '\'' +
+            ", email2='" + email2 + '\'' +
+            ", email3='" + email3 + '\'' +
             ", group='" + group + '\'' +
+            ", photo='" + photo + '\'' +
             '}';
   }
+
 
 }
