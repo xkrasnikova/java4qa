@@ -6,6 +6,7 @@ import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import krasnikova.addressbook.model.ContactData;
+import krasnikova.addressbook.model.Groups;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -59,7 +60,6 @@ public class ContactDataGenerator {
                 .withEmail(String.format("email1+%s@mail.com", i))
                 .withEmail2(String.format("email2+%s@mail.com", i))
                 .withEmail3(String.format("email3+%s@mail.com", i))
-                .withGroup(String.format("test %s", i))
                 .withAddress(String.format("Address %s", i)));
       }
       return contacts;

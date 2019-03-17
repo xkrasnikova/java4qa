@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import krasnikova.addressbook.model.ContactData;
 import krasnikova.addressbook.model.Contacts;
+import krasnikova.addressbook.model.Groups;
 import org.testng.annotations.*;
 
 import java.io.BufferedReader;
@@ -37,9 +38,10 @@ public class ContactCreationTests extends TestBase {
 
   @Test (dataProvider = "validContactsFromJSON")
   public void testContactCreation(ContactData contact) throws Exception {
+    Groups groups = app.db().groups();
+    File photo = new File("src/test/resources/1.jpeg");
     app.goTo().homePage();
     Contacts before = app.db().contacts();
-    File photo = new File("src/test/resources/1.jpeg");
     app.contact().create(contact,true);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
