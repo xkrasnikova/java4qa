@@ -2,6 +2,7 @@ package krasnikova.addressbook.appmanager;
 
 import krasnikova.addressbook.model.ContactData;
 import krasnikova.addressbook.model.Contacts;
+import krasnikova.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class ContactHelper extends HelperBase {
 
@@ -58,6 +60,11 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContactById(int id) {
+    try {
+      TimeUnit.SECONDS.sleep(1);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     wd.findElement(By.cssSelector("input[value='"+ id +"']")).click();
   }
 
@@ -151,5 +158,25 @@ public class ContactHelper extends HelperBase {
             .withFirstName(firstname).withLastName(lastname).withAddress(address)
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
             .withEmail(email).withEmail2(email2).withEmail3(email3);
+  }
+
+  public void addContactToGroup(ContactData contact, GroupData group) {
+    selectContactById(contact.getId());
+    addSelectedContactToGroup(group.getName());
+    contactCache = null;
+  }
+
+  public void addSelectedContactToGroup(String name) {
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(name);
+    click(By.name("add"));
+  }
+
+  public void removeContactFromGroup(ContactData contact) {
+    selectContactById(contact.getId());
+    click(By.name("remove"));
+  }
+
+  public void displayContactListForGroup(GroupData group) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
   }
 }
