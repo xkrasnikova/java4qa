@@ -25,7 +25,7 @@ public class ChangePasswordTests extends TestBase {
    app.login().loginAsAdmin();
    app.go().manageUsersPage();
    app.user().ressetPassword(changedUser.getId());
-   List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+   List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
    String confirmationLink = findConfirmationLink(mailMessages, changedUser.getEmail());
    app.registration().finish(confirmationLink, newPassword);
    assertTrue(app.newSession().login(changedUser.getUsername(), newPassword));
