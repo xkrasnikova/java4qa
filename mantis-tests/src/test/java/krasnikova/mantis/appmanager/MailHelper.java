@@ -3,6 +3,7 @@ package krasnikova.mantis.appmanager;
 import krasnikova.mantis.model.MailMessage;
 import org.subethamail.wiser.Wiser;
 import org.subethamail.wiser.WiserMessage;
+import ru.lanwen.verbalregex.VerbalExpression;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -56,4 +57,5 @@ public class MailHelper {
   public void stop() {
     wiser.stop();
   }
+
 }
