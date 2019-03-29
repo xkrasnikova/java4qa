@@ -29,7 +29,7 @@ public class SoapHelper {
            .collect(Collectors.toSet());
   }
 
-  private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
+  public MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
     return new MantisConnectLocator()
               .getMantisConnectPort(new URL(app.getProperty("web.baseUrl")+"/api/soap/mantisconnect.php"));
   }
@@ -51,4 +51,5 @@ public class SoapHelper {
             .withProject(new Project().withId(createdIssueData.getProject().getId().intValue())
                                             .withName(createdIssueData.getProject().getName()));
   }
+
 }
