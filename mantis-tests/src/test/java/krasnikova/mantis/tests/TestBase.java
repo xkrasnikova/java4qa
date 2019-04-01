@@ -37,7 +37,7 @@ public class TestBase {
     return regex.getText(mailMessage.text);
   }
 
-  public boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+  public boolean isIssueOpenSoap(int issueId) throws MalformedURLException, ServiceException, RemoteException {
     String adminLogin = app.getProperty("web.adminLogin");
     String adminPassword = app.getProperty("web.adminPassword");
     MantisConnectPortType mc = app.soap().getMantisConnect();
@@ -48,10 +48,28 @@ public class TestBase {
     return true;
   }
 
-  public void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
-    if (isIssueOpen(issueId)) {
+  public void skipIfNotFixedSoap(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+    if (isIssueOpenSoap(issueId)) {
       throw new SkipException("Ignored because of issue " + issueId);
     }
   }
+
+  public boolean isIssueOpenRest(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+    String adminLogin = app.getProperty("web.adminLogin");
+    String adminPassword = app.getProperty("web.adminPassword");
+    MantisConnectPortType mc = app.soap().getMantisConnect();
+    String issueStatus = mc.mc_issue_get(adminLogin, adminPassword, BigInteger.valueOf(issueId)).getStatus().getName();
+    if (issueStatus.equals("closed")) {
+      return false;
+    }
+    return true;
+  }
+
+  public void skipIfNotFixedRest(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+    if (isIssueOpenRest(issueId)) {
+      throw new SkipException("Ignored because of issue " + issueId);
+    }
+  }
+
 
 }
