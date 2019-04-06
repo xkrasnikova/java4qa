@@ -35,11 +35,6 @@
     <orderEntry type="library" name="Gradle: com.sun.xml.bind:jaxb-osgi:2.2.10" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.sling:org.apache.sling.javax.activation:0.1.0" level="project" />
     <orderEntry type="library" name="Gradle: javax.activation:activation:1.1.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-api:3.141.59" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-chrome-driver:3.141.59" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-firefox-driver:3.141.59" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.seleniumhq.selenium:selenium-remote-driver:3.141.59" level="project" />
-    <orderEntry type="module" module-name="mantis-tests.test" scope="TEST" />
   </component>
   <component name="TestModuleProperties" production-module="rest-sample.main" />
 </module>
