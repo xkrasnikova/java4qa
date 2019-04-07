@@ -6,7 +6,6 @@ import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import krasnikova.addressbook.model.ContactData;
-import krasnikova.addressbook.model.Groups;
 
 import java.io.File;
 import java.io.FileWriter;

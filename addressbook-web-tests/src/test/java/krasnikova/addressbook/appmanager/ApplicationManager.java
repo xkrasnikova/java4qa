@@ -1,6 +1,5 @@
 package krasnikova.addressbook.appmanager;
 
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,7 +8,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +28,6 @@ public class ApplicationManager {
   public ApplicationManager(String browser)  {
     this.browser = browser;
     properties = new Properties();
-
   }
 
   public void init() throws IOException {
@@ -58,8 +55,6 @@ public class ApplicationManager {
     sessionHelper = new SessionHelper(wd);
     contactHelper = new ContactHelper(wd);
     sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
-
-
   }
 
   public void stop() {
@@ -81,6 +76,4 @@ public class ApplicationManager {
   public DbHelper db(){
     return dbHelper;
   }
-
-
 }

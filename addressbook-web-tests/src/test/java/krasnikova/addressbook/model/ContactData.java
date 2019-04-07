@@ -91,7 +91,6 @@ public class ContactData {
     return this;
   }
 
-
   public String getAllPhones() {
     return allPhones;
   }
@@ -100,7 +99,6 @@ public class ContactData {
     this.allPhones = allPhones;
     return this;
   }
-
 
   public ContactData withId(int id) {
     this.id = id;
@@ -121,7 +119,6 @@ public class ContactData {
     this.address = address;
     return this;
   }
-
 
   public ContactData withHomePhone(String home) {
     this.homePhone = home;
@@ -152,7 +149,6 @@ public class ContactData {
     this.email3 = email3;
     return this;
   }
-
 
   public File getPhoto() {
     if (photo == null) {
@@ -205,7 +201,6 @@ public class ContactData {
   public String getEmail3() {
     return email3;
   }
-
 
   @Override
   public boolean equals(Object o) {

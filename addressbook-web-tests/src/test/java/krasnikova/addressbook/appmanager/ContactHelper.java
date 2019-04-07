@@ -20,7 +20,6 @@ public class ContactHelper extends HelperBase {
     super(wd);
   }
 
-
   public void submitContactCreation() {
     click(By.xpath("(//input[@name='submit'])[2]"));
   }
@@ -133,7 +132,6 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
     returnToHomePage();
   }
-
 
   public void delete(ContactData contact) {
     selectContactById(contact.getId());

@@ -4,9 +4,7 @@ import krasnikova.addressbook.model.ContactData;
 import krasnikova.addressbook.model.Contacts;
 import krasnikova.addressbook.model.GroupData;
 import krasnikova.addressbook.model.Groups;
-import org.testng.Assert;
 import org.testng.annotations.*;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -29,7 +27,6 @@ public class ContactDeletionTests extends TestBase{
 
   @Test
   public void testContactDeletion() throws Exception {
-
     Contacts before = app.db().contacts();
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);

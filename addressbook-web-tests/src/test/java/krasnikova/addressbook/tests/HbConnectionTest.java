@@ -1,7 +1,6 @@
 package krasnikova.addressbook.tests;
 
 import krasnikova.addressbook.model.ContactData;
-import krasnikova.addressbook.model.GroupData;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

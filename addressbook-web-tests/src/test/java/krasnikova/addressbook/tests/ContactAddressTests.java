@@ -6,9 +6,6 @@ import krasnikova.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -35,7 +32,5 @@ public class ContactAddressTests extends TestBase{
     assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
     verifyContactListInUI();
   }
-
-
 
 }

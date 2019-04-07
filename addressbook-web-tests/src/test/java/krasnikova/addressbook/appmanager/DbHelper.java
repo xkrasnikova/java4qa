@@ -34,7 +34,6 @@ public class DbHelper {
     return new Groups(result);
   }
 
-
   public Contacts contacts(){
     Session session = sessionFactory.openSession();
     session.beginTransaction();
@@ -61,6 +60,4 @@ public class DbHelper {
     session.close();
     return new Contacts(result);
   }
-
-
 }
